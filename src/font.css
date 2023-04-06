@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Voyage';
+  src: url('./fonts/Voyage-Regular.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Stadiona';
+  src: url('./fonts/Stadiona-Basic.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'Stadiona';
+}
