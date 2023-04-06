@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-//06b5ea731fca9e39d8b51074aaad5aac
 function MovieList() {
 
   
