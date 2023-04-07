@@ -1,4 +1,5 @@
-import { Button, Dropdown, Space } from 'antd';
+import { Button, Dropdown } from 'antd';
+import { Outlet, Link } from "react-router-dom";
 
 export default function DropdownMenu() {
 
@@ -6,17 +7,13 @@ export default function DropdownMenu() {
     {
       key: '1',
       label: (
-        <a target="_blank" rel="" href="https://www.antgroup.com">
-          Top Rated Movies
-        </a>
+        <Link to='/top-rated'>Top Rated Movies</Link>
       ),
     },
     {
       key: '2',
       label: (
-        <a target="_blank" rel="" href="https://www.aliyun.com">
-          Most Popular Movies
-        </a>
+        <Link to='/most-popular'>Most Popular Movies</Link>
       ),
     },
   ]

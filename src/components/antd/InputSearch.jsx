@@ -1,4 +1,3 @@
-import { AudioOutlined } from '@ant-design/icons';
 import { Input } from 'antd';
 import { useState, useEffect } from 'react';
 import axios from 'axios';

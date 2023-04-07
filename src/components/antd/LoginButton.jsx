@@ -1,8 +1,11 @@
-import { Button, Space } from 'antd';
+import { Button } from 'antd';
 
-export default function LoginButton() {
+export default function LoginButton(props) {
+  const buttonClassName = `login-button ${props.isLogIn ? "hide" : ""}`;
   return(
-    <Button>Sign In</Button>
+    <div className={buttonClassName}>
+      <Button onClick={props.onClick}>Sign In</Button>
+    </div>
   )
   
 };
