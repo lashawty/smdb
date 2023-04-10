@@ -1,6 +1,6 @@
 import { Card, Space, Input, Button } from 'antd';
 import {  UserOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import  { useState, useEffect, memo } from "react";
+import  { useState, useEffect } from "react";
 import './antd.sass'
 
 export default function LoginModal(props) {

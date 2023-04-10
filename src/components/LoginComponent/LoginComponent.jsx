@@ -2,7 +2,7 @@ import './LoginComponent.sass'
 import LoginButton from '../antd/LoginButton'
 import User from '../antd/User'
 import LoginModal from '../antd/LoginModal'
-import { useState, useEffect, memo } from 'react';
+import { useState } from 'react';
 export default function LoginComponent() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   //登入狀態

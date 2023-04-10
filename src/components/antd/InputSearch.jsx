@@ -1,6 +1,7 @@
 import { Input } from 'antd';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function InputSearch () {
   const { Search } = Input;
@@ -30,7 +31,7 @@ export default function InputSearch () {
         size="large"
         onSearch={onSearch}
       />
-      <ul>
+      {/* <ul>
         {results.map(result => (
           <li key={result.id}>
             {result.title}
@@ -41,7 +42,7 @@ export default function InputSearch () {
             )}
           </li>
         ))}
-      </ul>
+      </ul> */}
     </>
   )
 } 

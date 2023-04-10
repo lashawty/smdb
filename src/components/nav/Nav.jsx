@@ -2,8 +2,7 @@ import './Nav.sass'
 import InputSearch from '../antd/InputSearch'
 import DropdownMenu from '../antd/DropdownMenu'
 import LoginComponent from '../LoginComponent/LoginComponent'
-import { Outlet, Link, NavLink } from "react-router-dom";
-import { memo } from 'react';
+import { Link } from "react-router-dom";
 export default function Nav() {
 
   return (
