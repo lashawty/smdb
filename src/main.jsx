@@ -4,6 +4,8 @@ import App from './App'
 import SearchPage from './routes/SearchPage'
 import TopRatedPage from './routes/TopRatedPage'
 import MostPopularPage from './routes/MostPopularPage'
+import store from './store/store'
+import { Provider } from 'react-redux'
 import './font.css'
 import {
   createBrowserRouter,
@@ -36,8 +38,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    
+    <Provider store={store}>
     <RouterProvider router={router}>
     </RouterProvider>
+    </Provider>
   </React.StrictMode>,
 )
