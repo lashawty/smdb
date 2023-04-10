@@ -11,6 +11,8 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Route, Routes } from "react-router-dom"
+import {Counter} from './store/Counter'
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -38,6 +40,7 @@ function App() {
   return (
     <div className="App">
       <Nav></Nav>
+      <Counter></Counter>
       <Routes>
         <Route path="/" element={<MovieList />} />
         <Route path="/most-popular" element={<MostPopularPage />} />
