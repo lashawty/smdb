@@ -6,6 +6,7 @@ import SearchPage from './pages/SearchPage'
 import TopRatedPage from './pages/TopRatedPage'
 import MostPopularPage from './pages/MostPopularPage'
 import ErrorPage from "./pages/error-page";
+import MyMoviesPage from './pages/MyMoviesPage'
 import {
   createBrowserRouter,
   RouterProvider,
@@ -34,18 +35,23 @@ const router = createBrowserRouter([
     element: <MostPopularPage />,
     errorElement: <ErrorPage />,
   },
+  {
+    path: "/my-movies",
+    element: <MyMoviesPage />,
+    errorElement: <ErrorPage />,
+  },
 ]);
 function App() {
 
   return (
     <div className="App">
       <Nav></Nav>
-      <Counter></Counter>
       <Routes>
         <Route path="/" element={<MovieList />} />
         <Route path="/most-popular" element={<MostPopularPage />} />
         <Route path="/top-rated" element={<TopRatedPage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/my-movies" element={<MyMoviesPage />} />
       </Routes>
     </div>
   )

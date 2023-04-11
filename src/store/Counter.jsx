@@ -11,6 +11,7 @@ export function Counter() {
     axios
       .get('https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/search/movie?api_key=06b5ea731fca9e39d8b51074aaad5aac&query=Harry')
       .then(response => {
+        console.log(response);
         dispatch(increment(response.data.results.map(movie => movie.title)))
       })
       .catch(error => {

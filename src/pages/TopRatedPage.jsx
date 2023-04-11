@@ -26,7 +26,7 @@ export default function TopRatedPage (props) {
             <Card
             hoverable
             key={movie.id}
-            style={{ width: '350px' }}
+            style={{ 'min-width': '350px', width: '384px', border:'none' }}
             cover={<img alt="" src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`} />}
           >
             <Meta title={movie.title} description={movie.vote_average} />
