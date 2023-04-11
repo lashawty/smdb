@@ -2,28 +2,31 @@ import { Card, Space, Input, Button } from 'antd';
 import {  UserOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import  { useState, useEffect } from "react";
 import './antd.sass'
+import { useSelector, useDispatch } from 'react-redux';
+import { logIn } from '../../store/loginSlice';
 
 export default function LoginModal(props) {
   //預設將帳密存在local storage
   useEffect(()=>{
     localStorage.setItem("user", "sean")
     localStorage.setItem("password", "123")
-    localStorage.setItem("login", "false")
-    console.log('set');
   },[])
 
   //取得輸入帳密
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
+  //redux
+  const result = useSelector(state => state.login.value);
+  const dispatch = useDispatch()
+  
   //綁定事件
   const handleLogin = () => {
     if (
       username === localStorage.getItem('user') && 
       password == localStorage.getItem('password')) 
       {
-        props.onLogIn()
-        localStorage.setItem("login", "true")
+        dispatch(logIn())
       } else {
         alert('帳號或密碼錯誤')
       }
@@ -31,7 +34,7 @@ export default function LoginModal(props) {
 
   useEffect(()=>{
     props.onClose()
-  },[props.isLogIn])
+  },[result])
 
   const modalClassName = `Modal ${props.isOpen ? "active" : ""}`;
   const stopPropagation = (e) => {
