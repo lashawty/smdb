@@ -19,16 +19,34 @@ export default function LoginModal(props) {
   const [password, setPassword] = useState("");
 
   // 取得 session id
+  let sessionId
   const getToken = () => {
     axios.get('https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/authentication/token/new?api_key=06b5ea731fca9e39d8b51074aaad5aac')
       .then(response => {
         const token = response.data.request_token;
         console.log(token);
+        window.open(`https://www.themoviedb.org/authenticate/${token}`)
+        setTimeout(() => {
+          postSession(token)
+        }, 2000);
       })
       .catch(error => {
         console.log(error);
       });
   };
+
+  const postSession = (token) => {
+    axios.post('https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/authentication/session/new?api_key=06b5ea731fca9e39d8b51074aaad5aac', {
+      "request_token": token
+    })
+      .then(response => {
+        console.log(response.data.session_id);
+        dispatch(addSession(response.data.session_id));
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }
 
   const dispatch = useDispatch();
 
