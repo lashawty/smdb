@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from './counterSlice'
 import searchReducer from './searchSlice'
 import loginReducer from './loginSlice'
-// import getSessionReducer from './getSessionSlice'
+import sessionReducer from './getSessionSlice'
 
 export default configureStore({
   reducer: {
@@ -13,6 +13,6 @@ export default configureStore({
     //登入狀態
     login: loginReducer,
     //取得session
-    // session: getSessionReducer,
+    session: sessionReducer,
   }
 })
