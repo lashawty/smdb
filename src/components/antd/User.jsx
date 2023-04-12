@@ -24,7 +24,9 @@ export default function User (props) {
   const handleLogOut = () => {
     dispatch(logOut())
     dispatch(clearSession())
-    // logOutAPI()
+    localStorage.setItem("session_id", "")
+    localStorage.setItem("token", "")
+    localStorage.setItem("isLogIn", "false")
   }
 
   const userClassName = `user-box ${isLogIn ? "active" : ""}`;

@@ -12,6 +12,13 @@ export default function LoginModal(props) {
   useEffect(()=>{
     localStorage.setItem("user", "sean")
     localStorage.setItem("password", "123")
+    if(localStorage.getItem("isLogIn") !== "true") {
+      localStorage.setItem("isLogIn", "false")
+    } else {
+      dispatch(logIn());
+      const token = localStorage.getItem("token")
+      postSession(token)
+    }
   },[])
 
   // 取得輸入帳密
@@ -19,16 +26,13 @@ export default function LoginModal(props) {
   const [password, setPassword] = useState("");
 
   // 取得 session id
-  let sessionId
   const getToken = () => {
     axios.get('https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/authentication/token/new?api_key=06b5ea731fca9e39d8b51074aaad5aac')
       .then(response => {
         const token = response.data.request_token;
+        localStorage.setItem("token", token)
         console.log(token);
-        window.open(`https://www.themoviedb.org/authenticate/${token}`)
-        setTimeout(() => {
-          postSession(token)
-        }, 2000);
+        location.assign(`https://www.themoviedb.org/authenticate/${token}?redirect_to=http://localhost:5173/`)
       })
       .catch(error => {
         console.log(error);
@@ -42,6 +46,7 @@ export default function LoginModal(props) {
       .then(response => {
         console.log(response.data.session_id);
         dispatch(addSession(response.data.session_id));
+        localStorage.setItem("session_id", response.data.session_id)
       })
       .catch(error => {
         console.log(error);
@@ -55,6 +60,7 @@ export default function LoginModal(props) {
     if (username === localStorage.getItem('user') && password === localStorage.getItem('password')) {
       dispatch(logIn());
       getToken();
+      localStorage.setItem("isLogIn", "true")
     } else {
       alert('帳號或密碼錯誤')
     }
