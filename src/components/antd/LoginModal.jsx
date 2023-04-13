@@ -10,14 +10,16 @@ import './antd.sass'
 export default function LoginModal(props) {
   // 將假帳號密碼存在 local storage
   useEffect(()=>{
+    
     localStorage.setItem("user", "sean")
     localStorage.setItem("password", "123")
+
     if(localStorage.getItem("isLogIn") !== "true") {
       localStorage.setItem("isLogIn", "false")
     } else {
       dispatch(logIn());
       const token = localStorage.getItem("token")
-      postSession(token)
+      if(!localStorage.session_id) postSession(token)
     }
   },[])
 
@@ -40,6 +42,7 @@ export default function LoginModal(props) {
   };
 
   const postSession = (token) => {
+
     axios.post('https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/authentication/session/new?api_key=06b5ea731fca9e39d8b51074aaad5aac', {
       "request_token": token
     })

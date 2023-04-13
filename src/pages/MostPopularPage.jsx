@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Card, Space, Rate  } from 'antd';
+import MarkFavButton from '../components/antd/MarkFavButton';
 import './page.sass'
 const { Meta } = Card;
 
@@ -30,6 +31,7 @@ export default function MostPopularPage (props) {
           >
             <Meta title={movie.title} description={movie.vote_average} />
             <Rate allowHalf disabled defaultValue={`${movie.vote_average / 2}`} />
+            <MarkFavButton movieId={movie.id}></MarkFavButton>
           </Card>
         ))}
         </Space>

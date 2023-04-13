@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Card, Image, Row, Col, Empty } from 'antd';
+import MarkFavButton from '../components/antd/MarkFavButton';
 import './page.sass'
 const { Meta } = Card;
 
@@ -32,6 +33,7 @@ export default function SearchPage(props) {
               }
             >
               <Meta title={result.title} description={result.id} />
+              <MarkFavButton movieId={result.id}></MarkFavButton>
             </Card>
           </Col>
         ))

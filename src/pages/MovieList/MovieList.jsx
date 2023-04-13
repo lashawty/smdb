@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useSelector } from 'react-redux';
+import MarkFavButton from '../../components/antd/MarkFavButton';
+import axios from 'axios';
 import 'swiper/css';
 import './MovieList.sass'
 
@@ -24,8 +26,8 @@ function MovieList() {
       <h2>Upcoming Movies</h2>
       <Swiper
       slidesPerView={1}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
+      // onSlideChange={() => console.log('slide change')}
+      // onSwiper={(swiper) => console.log(swiper)}
       lazyPreloadPrevNext
       >
         {movies.map(movie => (
@@ -33,8 +35,10 @@ function MovieList() {
             <div className='text-box'>
               <h3>{movie.title}</h3>
               <p>{movie.overview}</p>
+              <MarkFavButton movieId={movie.id}></MarkFavButton>
             </div>
-            <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}></img>          
+            <img src={`https://image.tmdb.org/t/p/original${movie.backdrop_path}`}></img>
+                      
           </SwiperSlide>
         ))}
       </Swiper>
