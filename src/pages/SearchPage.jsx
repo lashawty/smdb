@@ -1,6 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { Card, Image, Row, Col, Empty } from 'antd';
+import { Card, Image, Space, Empty, Modal, Pagination } from 'antd';
 import MarkFavButton from '../components/antd/MarkFavButton';
 import './page.sass'
 const { Meta } = Card;
@@ -8,40 +8,87 @@ const { Meta } = Card;
 export default function SearchPage(props) {
   const results = useSelector(state => state.search.value);
   const [showResult, setShowResults] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedResult, setSelectedResult] = useState(null);
+  // const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     setShowResults(results);
+    console.log(results);
+    // setTotalPages(data.total_pages);
   }, [results]);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className='search-result'>
       <h2>Search Results</h2>
-      <Row gutter={[16, 24]}>
+      <Space size="large" style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-start', margin: '50px auto 0 auto', justifyContent: 'center' }}>
       {showResult.length > 0 ? (
         showResult.map((result, index) => (
-          <Col className="gutter-row" span={8}>
-            <Card
-              key={result.id}
-              hoverable
-              style={{ width: '300px' }}
-              cover={
-                result.backdrop_path !== null ? (
-                  <Image width={'100%'} src={`https://image.tmdb.org/t/p/original${result.backdrop_path}`} />
-                ) : (
-                  <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} />
-                )
-              }
-            >
-              <Meta title={result.title} description={result.id} />
-              <MarkFavButton movieId={result.id}></MarkFavButton>
-            </Card>
-          </Col>
+          result.backdrop_path !== null ?
+            <>
+              <Card
+                key={result.id}
+                hoverable
+                style={{'max-width': '384px', border:'none', width: '100%' }}
+                cover={
+                    <Image 
+                      width={'100%'}
+                      src={`https://image.tmdb.org/t/p/original${result.poster_path}`}
+                      preview={false}
+                    />
+                }
+                onClick={() => {
+                  setSelectedResult(result);
+                  showModal();
+                }}
+              >
+                <Meta title={result.title} description={result.release_date} />
+                <MarkFavButton movieId={result.id}></MarkFavButton>
+              </Card>
+            </>
+            : <></>
         ))
       ) : (
-        <Empty style={{margin: 'auto', width: '200px'}}/>
+        <Empty style={{width: '100%'}}/>
       )}
-
-      </Row>
+      <Modal
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        footer={null}
+        style={{"font-family": 'Stadiona', "fontSize": '20px'}}
+      >
+        {selectedResult && (
+          <div>
+            <Image 
+              width={'100%'}
+              style={{"marginTop": '30px'}}
+              src={`https://image.tmdb.org/t/p/original${selectedResult.backdrop_path}`}
+              preview={false}
+            />
+            <h3
+              style={{"fontSize": '30px'}}
+            >{selectedResult ? selectedResult.title : ''}</h3>
+            <h4
+              style={{"marginTop": '20px'}}
+            >{selectedResult ? selectedResult.overview : ''}</h4>
+          </div>
+        )}
+      </Modal>
+      </Space>
+      {/* <Pagination defaultCurrent={1} total={50} /> */}
     </div>
   );
 }
