@@ -18,7 +18,6 @@ export default function InputSearch () {
 
   const onSearch = (value) => {
     //判斷是否更改搜尋文字
-    console.log(inputText, value, inputText !== value, '有沒有切換搜尋文字');
     if(inputText !== value) dispatch(getSearchPage(1))
     axios
       .get(`https://api.themoviedb.org/3/search/movie?api_key=06b5ea731fca9e39d8b51074aaad5aac&language=en-US&query=${value}&page=${inputText !== value ? 1 : page}&include_adult=false`)

@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './page.sass'
-import { Image, Descriptions, Card, Space } from 'antd';
+import { Image, Descriptions, Card, Space, Empty } from 'antd';
 import RemoveFavButton from '../components/antd/RemoveFavButton';
 
 export default function MyMoviesPage(props) {
@@ -35,25 +35,27 @@ export default function MyMoviesPage(props) {
     <div className='my-movies'>
       <h2>My Movies</h2>
       <div className='cards'>
-        {myMovies.map(movie=>(
-          <Card key={movie.id} style={{width: "40%"}}>
-            <Space direction="vertical">
-              <Image
-                width={'100%'}
-                src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
-              />
-              <Descriptions title={movie.title}>
-                <Descriptions.Item label="Release Date" style={{width: "100%"}}>{movie.release_date}</Descriptions.Item>
-                <Descriptions.Item label="Rate" style={{width: "100%"}}>{`${movie.vote_average} / 10`}</Descriptions.Item>
-              </Descriptions>
-              <RemoveFavButton
-                movieId={movie.id}
-                onClick={getMyMovies}
-                >
-              </RemoveFavButton>
-            </Space>
-          </Card>
-        ))}
+        {myMovies.length > 0 ? 
+          myMovies.map(movie=>(
+            <Card key={movie.id} style={{width: "40%"}}>
+              <Space direction="vertical">
+                <Image
+                  width={'100%'}
+                  src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                />
+                <Descriptions title={movie.title}>
+                  <Descriptions.Item label="Release Date" style={{width: "100%"}}>{movie.release_date}</Descriptions.Item>
+                  <Descriptions.Item label="Rate" style={{width: "100%"}}>{`${movie.vote_average} / 10`}</Descriptions.Item>
+                </Descriptions>
+                <RemoveFavButton
+                  movieId={movie.id}
+                  onClick={getMyMovies}
+                  >
+                </RemoveFavButton>
+              </Space>
+            </Card>
+        ))
+          : <Empty style={{width: '100%'}}/>}
       </div>
     </div>
   );

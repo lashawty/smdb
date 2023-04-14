@@ -57,7 +57,7 @@ export default function SearchPage(props) {
             <div key={result.id}>
               <Card
                 hoverable
-                style={{'max-width': '384px', border:'none', width: '100%' }}
+                style={{maxWidth: '384px', border:'none', width: '100%' }}
                 cover={
                     <Image 
                       width={'100%'}
@@ -104,13 +104,14 @@ export default function SearchPage(props) {
         )}
       </Modal>
       </Space>
-      <Pagination 
+      {showResult.length > 0 ? <Pagination 
         defaultCurrent={1}
         total={totalPage}
         current={currentPage}
         onChange={onChangePage}
         style={{margin: '30px auto 0 auto', width: 'fit-content'}}
-      />
+      /> : <></>}
+      
     </div>
   );
 }
