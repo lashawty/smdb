@@ -1,21 +1,28 @@
-import { useSelector } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Card, Image, Space, Empty, Modal, Pagination } from 'antd';
 import MarkFavButton from '../components/antd/MarkFavButton';
+import { useDispatch, useSelector } from 'react-redux'
+import { getSearchPage } from '../store/searchPageSlice';
 import './page.sass'
 const { Meta } = Card;
-
 export default function SearchPage(props) {
   const results = useSelector(state => state.search.value);
+  const dispatch = useDispatch()
   const [showResult, setShowResults] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedResult, setSelectedResult] = useState(null);
-  // const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPage, setTotalPage] = useState(1)
+
+  let getTotalPage = useSelector(state => state.totalSearchPage.value);
+  const onChangePage = (page) => {
+    setCurrentPage(page);
+    dispatch(getSearchPage(page))
+  }
 
   useEffect(() => {
     setShowResults(results);
-    console.log(results);
-    // setTotalPages(data.total_pages);
+    setTotalPage(getTotalPage)
   }, [results]);
 
   const showModal = () => {
@@ -88,7 +95,12 @@ export default function SearchPage(props) {
         )}
       </Modal>
       </Space>
-      {/* <Pagination defaultCurrent={1} total={50} /> */}
+      <Pagination 
+        defaultCurrent={1}
+        total={totalPage}
+        current={currentPage}
+        onChange={onChangePage}
+      />
     </div>
   );
 }
