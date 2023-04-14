@@ -100,6 +100,7 @@ export default function SearchPage(props) {
         total={totalPage}
         current={currentPage}
         onChange={onChangePage}
+        style={{margin: '30px auto 0 auto', width: 'fit-content'}}
       />
     </div>
   );
