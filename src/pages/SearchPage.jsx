@@ -6,15 +6,21 @@ import { getSearchPage } from '../store/searchPageSlice';
 import './page.sass'
 const { Meta } = Card;
 export default function SearchPage(props) {
+  //redux
   const results = useSelector(state => state.search.value);
+  let getCurrentPage = useSelector(state => state.searchPage.value)
+  let getTotalPage = useSelector(state => state.totalSearchPage.value);
   const dispatch = useDispatch()
+
+  //use state
   const [showResult, setShowResults] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedResult, setSelectedResult] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPage, setTotalPage] = useState(1)
 
-  let getTotalPage = useSelector(state => state.totalSearchPage.value);
+  
+
   const onChangePage = (page) => {
     setCurrentPage(page);
     dispatch(getSearchPage(page))
@@ -24,6 +30,10 @@ export default function SearchPage(props) {
     setShowResults(results);
     setTotalPage(getTotalPage)
   }, [results]);
+
+  useEffect(()=>{
+    setCurrentPage(getCurrentPage)
+  },[getCurrentPage])
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -44,9 +54,8 @@ export default function SearchPage(props) {
       {showResult.length > 0 ? (
         showResult.map((result, index) => (
           result.backdrop_path !== null ?
-            <>
+            <div key={result.id}>
               <Card
-                key={result.id}
                 hoverable
                 style={{'max-width': '384px', border:'none', width: '100%' }}
                 cover={
@@ -64,7 +73,7 @@ export default function SearchPage(props) {
                 <Meta title={result.title} description={result.release_date} />
                 <MarkFavButton movieId={result.id}></MarkFavButton>
               </Card>
-            </>
+            </div>
             : <></>
         ))
       ) : (
@@ -75,7 +84,7 @@ export default function SearchPage(props) {
         onOk={handleOk}
         onCancel={handleCancel}
         footer={null}
-        style={{"font-family": 'Stadiona', "fontSize": '20px'}}
+        style={{"fontFamily": 'Stadiona', "fontSize": '20px'}}
       >
         {selectedResult && (
           <div>
