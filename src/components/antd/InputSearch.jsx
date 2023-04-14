@@ -32,6 +32,7 @@ export default function InputSearch () {
           navigate('/search')
         } else {
           dispatch(getSearchResult(response.data.results))
+          dispatch(getTotalSearchPage(1))
         }
         
       })

@@ -27,7 +27,7 @@ export default function TopRatedPage (props) {
             <Card
             hoverable
             key={movie.id}
-            style={{'max-width': '384px', border:'none', width: '100%' }}
+            style={{maxWidth: '384px', border:'none', width: '100%' }}
             cover={
               <Image
               width={'100%'}
