@@ -11,13 +11,18 @@ function MovieList() {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    axios.get('https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/upcoming?api_key=06b5ea731fca9e39d8b51074aaad5aac&language=en-US&page=1')
+    if (movies.length === 0)
+    {axios.get('https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/upcoming?api_key=06b5ea731fca9e39d8b51074aaad5aac&language=en-US&page=1')
       .then(response => {
+        console.log('get movie list')
         setMovies(response.data.results);
       })
       .catch(error => {
         console.log(error);
-      });
+      });} else {
+        console.log('return');
+        return
+      }
   }, []);
 
   return (

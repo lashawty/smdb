@@ -33,8 +33,12 @@ export default function LoginModal(props) {
       .then(response => {
         const token = response.data.request_token;
         localStorage.setItem("token", token)
-        console.log(token);
-        location.assign(`https://www.themoviedb.org/authenticate/${token}?redirect_to=http://localhost:5173/`)
+        
+        //取得跳轉前網址
+        const url = location.href
+        console.log(url);
+
+        location.assign(`https://www.themoviedb.org/authenticate/${token}?redirect_to=${url}/my-movies`)
       })
       .catch(error => {
         console.log(error);
