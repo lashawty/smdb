@@ -4,8 +4,10 @@ import axios from 'axios';
 import './page.sass'
 import { Image, Descriptions, Card, Space, Empty } from 'antd';
 import RemoveFavButton from '../components/antd/RemoveFavButton';
-
+import useWindowSize from '../hook/useWindowSize';
 export default function MyMoviesPage(props) {
+  //resize
+  const windowWidth = useWindowSize().width
 
   //redux
   const [myMovies, setMyMovies] = useState([])
@@ -37,20 +39,35 @@ export default function MyMoviesPage(props) {
       <div className='cards'>
         {myMovies.length > 0 ? 
           myMovies.map(movie=>(
-            <Card key={movie.id} style={{width: "40%"}}>
+            <Card key={movie.id} style={windowWidth >= 767 ? {width: "360px"} : {width: '100%'}}>
               <Space direction="vertical">
                 <Image
-                  width={'100%'}
+                  style={{width
+                  : '100%', maxWidth: '100%'}}
                   src={`https://image.tmdb.org/t/p/original${movie.poster_path}`}
+                  preview={false}
                 />
-                <Descriptions title={movie.title}>
-                  <Descriptions.Item label="Release Date" style={{width: "100%"}}>{movie.release_date}</Descriptions.Item>
-                  <Descriptions.Item label="Rate" style={{width: "100%"}}>{`${movie.vote_average} / 10`}</Descriptions.Item>
+                <Descriptions title={movie.title} >
+                  <Descriptions.Item
+                    label="Release Date"
+                    style={{
+                      display: 'block',
+                      width:'100%'
+                      }}>
+                      {movie.release_date}
+                  </Descriptions.Item>
+                  <Descriptions.Item
+                    label="Rate"
+                    style={{
+                      display: 'block',
+                      width:'100%'
+                      }}>
+                      {`${movie.vote_average} / 10`}
+                  </Descriptions.Item>
                 </Descriptions>
                 <RemoveFavButton
                   movieId={movie.id}
-                  onClick={getMyMovies}
-                  >
+                  onClick={getMyMovies}>
                 </RemoveFavButton>
               </Space>
             </Card>

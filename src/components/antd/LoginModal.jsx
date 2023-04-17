@@ -1,4 +1,4 @@
-import { Card, Space, Input, Button } from 'antd';
+import { Card, Space, Input, Button, Modal } from 'antd';
 import {  UserOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import  { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
@@ -18,8 +18,6 @@ export default function LoginModal(props) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  //燈箱class
-  const modalClassName = `Modal ${props.isOpen ? "active" : ""}`;
 
   //方法
 
@@ -47,12 +45,12 @@ export default function LoginModal(props) {
       "request_token": token
     })
       .then(response => {
-        console.log(response.data.session_id);
+        // console.log(response.data.session_id);
         dispatch(addSession(response.data.session_id));
         localStorage.setItem("session_id", response.data.session_id)
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
   }
 
@@ -86,18 +84,23 @@ export default function LoginModal(props) {
       if(!localStorage.session_id) postSession(token)
     }
   },[])
-
+  
   // 關閉 Modal
   useEffect(()=>{
     props.onClose()
   },[isLogin])
 
   return (
-    <div className={modalClassName} onClick={props.onClose}>
+    <Modal
+      open={props.isOpen}
+      onOk={props.onClose}
+      onCancel={props.onClose}
+      footer={null} 
+    >
       <Card
         onClick={stopPropagation}
         title="SIGN IN"
-        style={{ width: 300, textAlign: 'center' }}>
+        style={{ width: '100%', textAlign: 'center', border:'none' }}>
         <Space
           direction="vertical"
           size="middle"
@@ -120,6 +123,6 @@ export default function LoginModal(props) {
           </Button>
         </Space>
       </Card>
-    </div>
+    </Modal>
   );
 }

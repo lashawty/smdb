@@ -26,7 +26,7 @@ export default function User (props) {
       </Link>
       <LogoutOutlined onClick={handleLogOut} style={{
         color: '#fff',
-        fontSize: '20px'  
+        fontSize: '24px'  
       }}/>
     </div>
   )

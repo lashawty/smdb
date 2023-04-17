@@ -7,7 +7,7 @@ import { getSearchPage } from '../../store/searchPageSlice';
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
-import  useWindowSize  from '../../hook/useWindowSize'
+import useWindowSize from '../../hook/useWindowSize'
 
 export default function InputSearch () {
   const windowWidth = useWindowSize().width
@@ -68,12 +68,11 @@ export default function InputSearch () {
       enterButton={<SearchOutlined />}
       size="large"
       onSearch={onSearch}
-      style={{ backgroundColor: '#000', colorPrimary: '#fff' }}
     />) : (
       <>
         <SearchOutlined 
           onClick={showModal}
-          style={{color: '#fff'}}
+          style={{color: '#fff', fontSize: '24px'}}
         />
         <Modal
           title="Please enter keyword"

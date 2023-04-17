@@ -8,21 +8,21 @@ export default function LoginComponent() {
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleModalOpen = () => {
+  const showModal = () => {
     setIsModalOpen(true);
   };
-
-  const handleModalClose = () => {
+  
+  const closeModal = () => {
     setIsModalOpen(false);
-  };
+  }
 
   return (
     <div className="login-component">
-      <LoginButton onClick={handleModalOpen}></LoginButton>
+      <LoginButton onClick={showModal}></LoginButton>
       <User></User>
       <LoginModal
         isOpen={isModalOpen}
-        onClose={handleModalClose}
+        onClose={closeModal}
       ></LoginModal>
     </div>
   )

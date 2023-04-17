@@ -12,11 +12,11 @@ export default function Api() {
   const axiosGet = (target, callback) => {
     axios.get(`https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/${target}?api_key=06b5ea731fca9e39d8b51074aaad5aac&language=en-US&page=1`)
       .then(response => {
-        console.log(response.data.results);
+        // console.log(response.data.results);
         dispatch(callback(response.data.results))
       })
       .catch(error => {
-        console.log(error);
+        // console.log(error);
       });
   }
   useEffect(() => {
