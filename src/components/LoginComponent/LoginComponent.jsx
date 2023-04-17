@@ -1,4 +1,3 @@
-import './LoginComponent.sass'
 import LoginButton from '../antd/LoginButton'
 import User from '../antd/User'
 import LoginModal from '../antd/LoginModal'

@@ -1,4 +1,4 @@
-import { Input } from 'antd';
+import { Input, Modal } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { getSearchResult } from '../../store/searchSlice'
@@ -6,16 +6,27 @@ import { getTotalSearchPage } from '../../store/totalSearchPageSlice'
 import { getSearchPage } from '../../store/searchPageSlice';
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react';
+import { SearchOutlined } from '@ant-design/icons';
+import  useWindowSize  from '../../hook/useWindowSize'
 
 export default function InputSearch () {
+  const windowWidth = useWindowSize().width
   const { Search } = Input;
-  let navigate = useNavigate();
   const dispatch = useDispatch()
+  let navigate = useNavigate();
   let page = useSelector(state => state.searchPage.value);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(null)
   const [inputText, setInputText] = useState(null)
-  // const [isInputChange, setIsInputChange] = useState(true)
-
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
   const onSearch = (value) => {
     //判斷是否更改搜尋文字
     if(inputText !== value) dispatch(getSearchPage(1))
@@ -25,7 +36,9 @@ export default function InputSearch () {
         if (response.data.results.length !== 0) {
           //輸入的文字
           setInputText(value)
+          //搜尋結果
           dispatch(getSearchResult(response.data.results))
+          //搜尋結果總頁數
           dispatch(getTotalSearchPage(response.data.total_pages))
           
           navigate('/search')
@@ -38,6 +51,8 @@ export default function InputSearch () {
       .catch(error => {
         console.log(error);
       });
+    
+      if(windowWidth <= 992) handleOk()
   };
 
   useEffect(()=>{
@@ -46,12 +61,36 @@ export default function InputSearch () {
   }, [page])
   
   return(
-    <Search
+    windowWidth >= 992 ?
+   ( <Search
       placeholder="Search Movies"
       allowClear
-      enterButton="Search"
+      enterButton={<SearchOutlined />}
       size="large"
       onSearch={onSearch}
-    />
+      style={{ backgroundColor: '#000', colorPrimary: '#fff' }}
+    />) : (
+      <>
+        <SearchOutlined 
+          onClick={showModal}
+          style={{color: '#fff'}}
+        />
+        <Modal
+          title="Please enter keyword"
+          open={isModalOpen}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          footer={null}  
+        >
+          <Search
+            placeholder="Search Movies"
+            allowClear
+            enterButton={<SearchOutlined />}
+            size="large"
+            onSearch={onSearch}
+          />
+        </Modal>
+      </>
+    )
   )
 } 

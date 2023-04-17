@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import MarkFavButton from '../../components/antd/MarkFavButton';
-import axios from 'axios';
+import { useSelector } from 'react-redux'
 import 'swiper/css';
 import './MovieList.sass'
 
@@ -9,21 +9,11 @@ function MovieList() {
 
   
   const [movies, setMovies] = useState([]);
+  const getMovieList = useSelector(state => state.movieList.value);
 
   useEffect(() => {
-    if (movies.length === 0)
-    {axios.get('https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/upcoming?api_key=06b5ea731fca9e39d8b51074aaad5aac&language=en-US&page=1')
-      .then(response => {
-        console.log('get movie list')
-        setMovies(response.data.results);
-      })
-      .catch(error => {
-        console.log(error);
-      });} else {
-        console.log('return');
-        return
-      }
-  }, []);
+    setMovies(getMovieList)
+  }, [getMovieList]);
 
   return (
     <div className='now-playing'>

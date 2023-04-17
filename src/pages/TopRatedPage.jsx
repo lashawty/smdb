@@ -1,21 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { Card, Space, Rate, Image  } from 'antd';
+import { useSelector } from 'react-redux'
 import MarkFavButton from '../components/antd/MarkFavButton';
 import './page.sass'
 const { Meta } = Card;
 
 export default function TopRatedPage (props) {
   const [movies, setMovies] = useState([]);
+  const getTopRated = useSelector(state => state.topRated.value);
+  
   useEffect(() => {
-    axios.get('https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/top_rated?api_key=06b5ea731fca9e39d8b51074aaad5aac&language=en-US')
-      .then(response => {
-        setMovies(response.data.results);
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }, []);
+    setMovies(getTopRated)
+  }, [getTopRated]);
 
   return(
       <div className='top-rated'>
@@ -25,7 +21,7 @@ export default function TopRatedPage (props) {
             <Card
             hoverable
             key={movie.id}
-            style={{maxWidth: '384px', border:'none', width: '100%' }}
+            style={{maxWidth: '280px', border:'none', width: '100%' }}
             cover={
               <Image
               width={'100%'}

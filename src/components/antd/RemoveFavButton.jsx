@@ -6,8 +6,8 @@ import axios from 'axios';
 export default function RemoveFavButton(props) {
   const isLogIn = useSelector(state => state.login.value);
   const buttonClassName = `mark-button ${isLogIn ? "" : "disabled"}`;
-
   const sessionId = localStorage.getItem("session_id")
+
   const removedFav = () => {
     if(isLogIn) {
       axios.post(`https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/account/hustle0985/favorite?api_key=06b5ea731fca9e39d8b51074aaad5aac&session_id=${sessionId}`, {
@@ -23,6 +23,7 @@ export default function RemoveFavButton(props) {
         });
     }
   }
+  
   return(
     <div 
       className={buttonClassName}

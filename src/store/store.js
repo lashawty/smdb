@@ -1,14 +1,22 @@
 import { configureStore } from '@reduxjs/toolkit'
-import counterReducer from './counterSlice'
 import searchReducer from './searchSlice'
 import loginReducer from './loginSlice'
 import sessionReducer from './getSessionSlice'
 import searchPageReducer from './searchPageSlice'
 import totalSearchPageReducer from './totalSearchPageSlice'
-
+import movieListReducer from './movieListSlice'
+import topRatedReducer from './topRatedSlice'
+import mostPopularReducer from './mostPopularSlice'
 export default configureStore({
   reducer: {
-    counter: counterReducer,
+    //首頁輪播
+    movieList: movieListReducer,
+
+    //最高評分
+    topRated: topRatedReducer,
+
+    //最熱門
+    mostPopular: mostPopularReducer,
 
     //搜尋結果
     search: searchReducer,
