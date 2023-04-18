@@ -40,6 +40,7 @@ clone => npm i => npm run dev
 ![](https://i.imgur.com/3J2vHtu.png)
 
 登入後須取得第三方網站授權始可取得我的片單
+> 因第三方網站需另外登入 需要另外操作
 同第三方網站的資料
 
 ![](https://i.imgur.com/DicgQEr.png)
