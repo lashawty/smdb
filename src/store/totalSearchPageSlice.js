@@ -1,17 +1,17 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 export const totalSearchPageSlice = createSlice({
   name: 'totalSearchPageSlice',
   initialState: {
-    value: 1
+    value: 1,
   },
   reducers: {
     getTotalSearchPage: (state, action) => {
-      state.value = action.payload
+      state.value = action.payload;
     },
   },
-})
+});
 
-export const { getTotalSearchPage } = totalSearchPageSlice.actions
+export const { getTotalSearchPage } = totalSearchPageSlice.actions;
 
-export default totalSearchPageSlice.reducer
+export default totalSearchPageSlice.reducer;

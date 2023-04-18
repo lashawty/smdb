@@ -1,12 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit'
-import searchReducer from './searchSlice'
-import loginReducer from './loginSlice'
-import sessionReducer from './getSessionSlice'
-import searchPageReducer from './searchPageSlice'
-import totalSearchPageReducer from './totalSearchPageSlice'
-import movieListReducer from './movieListSlice'
-import topRatedReducer from './topRatedSlice'
-import mostPopularReducer from './mostPopularSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import searchReducer from './searchSlice';
+import loginReducer from './loginSlice';
+import sessionReducer from './getSessionSlice';
+import searchPageReducer from './searchPageSlice';
+import totalSearchPageReducer from './totalSearchPageSlice';
+import movieListReducer from './movieListSlice';
+import topRatedReducer from './topRatedSlice';
+import mostPopularReducer from './mostPopularSlice';
 export default configureStore({
   reducer: {
     //首頁輪播
@@ -20,7 +20,7 @@ export default configureStore({
 
     //搜尋結果
     search: searchReducer,
-    
+
     //搜尋結果的頁數
     searchPage: searchPageReducer,
     totalSearchPage: totalSearchPageReducer,
@@ -30,5 +30,5 @@ export default configureStore({
 
     //取得session
     session: sessionReducer,
-  }
-})
+  },
+});

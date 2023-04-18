@@ -44,7 +44,6 @@ export default function LoginModal(props) {
       "request_token": token
     })
       .then(response => {
-        // console.log(response.data.session_id);
         dispatch(addSession(response.data.session_id));
         localStorage.setItem("session_id", response.data.session_id)
       })

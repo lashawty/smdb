@@ -1,20 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 export const sessionSlice = createSlice({
   name: 'session',
   initialState: {
-    value: null
+    value: null,
   },
   reducers: {
     addSession: (state, action) => {
       state.value = action.payload;
     },
-    clearSession: state => {
-      state.value = null
+    clearSession: (state) => {
+      state.value = null;
     },
   },
-})
+});
 
-export const { addSession, clearSession } = sessionSlice.actions
+export const { addSession, clearSession } = sessionSlice.actions;
 
-export default sessionSlice.reducer
+export default sessionSlice.reducer;

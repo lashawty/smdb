@@ -1,20 +1,20 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from '@reduxjs/toolkit';
 
 export const topRatedSlice = createSlice({
   name: 'topRated',
   initialState: {
-    value: []
+    value: [],
   },
   reducers: {
     getTopRated: (state, action) => {
-      state.value = action.payload
+      state.value = action.payload;
     },
-    clearTopRated: state => {
-      state.value = []
+    clearTopRated: (state) => {
+      state.value = [];
     },
   },
-})
+});
 
-export const { getTopRated, clearTopRated } = topRatedSlice.actions
+export const { getTopRated, clearTopRated } = topRatedSlice.actions;
 
-export default topRatedSlice.reducer
+export default topRatedSlice.reducer;
