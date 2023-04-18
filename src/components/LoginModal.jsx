@@ -30,7 +30,7 @@ export default function LoginModal(props) {
         
         //取得跳轉前網址
         let url = localStorage.getItem("url")
-        location.assign(`https://www.themoviedb.org/authenticate/${token}?redirect_to=${sessionStorage.getItem("url")}`)
+        location.assign(`https://www.themoviedb.org/authenticate/${token}?redirect_to=${url}`)
       })
       .catch(error => {
         console.log(error);
