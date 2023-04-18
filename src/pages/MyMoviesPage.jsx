@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import './page.sass'
 import { Image, Descriptions, Card, Space, Empty } from 'antd';
-import RemoveFavButton from '../components/antd/RemoveFavButton';
+import RemoveFavButton from '../components/RemoveFavButton';
 import useWindowSize from '../hook/useWindowSize';
 export default function MyMoviesPage(props) {
   //resize

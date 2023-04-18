@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import MarkFavButton from '../../components/antd/MarkFavButton';
+import MarkFavButton from '../../components/MarkFavButton';
 import { useSelector } from 'react-redux'
 import 'swiper/css';
 import './MovieList.sass'

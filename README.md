@@ -1,10 +1,10 @@
-# [TMDB API 串接](https://smdb-dist-4s0do5rod-lashawty.vercel.app/)
+# [TMDB API 串接](https://smdb-dist.vercel.app/)
 ![](https://i.imgur.com/Dsxt4An.jpg)
 ## 使用技術： React, Redux, React-Router, Axios, vite
 
 ## API： [TMDB API](https://developers.themoviedb.org/3/getting-started/introduction)
 
-> 因為使用了 CORS Anywhere 進行 API 請求，會因為過多的請求而被限制，導致請求失敗或延遲。
+> 因使用 CORS Anywhere 進行 API 請求，若過多的請求會被限制，導致請求失敗或延遲。
 
 ### 實作功能
 

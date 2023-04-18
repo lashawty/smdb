@@ -9,8 +9,8 @@ export const searchSlice = createSlice({
     getSearchResult: (state, action) => {
       state.value = action.payload
     },
-    clearResult: state => {
-      state.value = []
+    clearResult: (state, action) => {
+      state.value = action.payload
     },
   },
 })

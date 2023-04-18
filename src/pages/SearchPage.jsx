@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Card, Image, Space, Empty, Modal, Pagination } from 'antd';
-import MarkFavButton from '../components/antd/MarkFavButton';
+import MarkFavButton from '../components/MarkFavButton';
 import { useDispatch, useSelector } from 'react-redux'
 import { getSearchPage } from '../store/searchPageSlice';
 import './page.sass'

@@ -1,6 +1,6 @@
-import LoginButton from '../antd/LoginButton'
-import User from '../antd/User'
-import LoginModal from '../antd/LoginModal'
+import LoginButton from '../components/LoginButton'
+import User from '../components/User'
+import LoginModal from '../components/LoginModal'
 import { useState } from 'react';
 
 

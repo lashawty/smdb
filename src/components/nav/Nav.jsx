@@ -1,7 +1,7 @@
 import './Nav.sass'
-import InputSearch from '../antd/InputSearch'
-import DropdownMenu from '../antd/DropdownMenu'
-import LoginComponent from '../LoginComponent/LoginComponent'
+import InputSearch from '../InputSearch'
+import DropdownMenu from '../DropdownMenu'
+import LoginComponent from '../../container/LoginComponent'
 import { Link } from "react-router-dom";
 export default function Nav() {
 

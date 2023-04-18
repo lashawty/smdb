@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import { Card, Space, Rate, Image  } from 'antd';
-import MarkFavButton from '../components/antd/MarkFavButton';
+import MarkFavButton from '../components/MarkFavButton';
 import './page.sass'
 const { Meta } = Card;
 

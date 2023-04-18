@@ -2,8 +2,8 @@ import { Card, Space, Input, Button, Modal } from 'antd';
 import {  UserOutlined, EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import  { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux';
-import { logIn } from '../../store/loginSlice';
-import { addSession } from '../../store/getSessionSlice';
+import { logIn } from '../store/loginSlice';
+import { addSession } from '../store/getSessionSlice';
 import axios from 'axios';
 import './antd.sass'
 // 登入流程：
@@ -29,8 +29,7 @@ export default function LoginModal(props) {
         localStorage.setItem("token", token)
         
         //取得跳轉前網址
-        let url = location.href
-        sessionStorage.setItem("url", url)
+        let url = localStorage.getItem("url")
         location.assign(`https://www.themoviedb.org/authenticate/${token}?redirect_to=${sessionStorage.getItem("url")}`)
       })
       .catch(error => {
@@ -75,6 +74,7 @@ export default function LoginModal(props) {
     
     localStorage.setItem("user", "sean")
     localStorage.setItem("password", "123")
+    localStorage.setItem("url", location.href)
 
     if(localStorage.getItem("isLogIn") !== "true") {
       localStorage.setItem("isLogIn", "false")

@@ -1,13 +1,13 @@
 import { Input, Modal } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { getSearchResult } from '../../store/searchSlice'
-import { getTotalSearchPage } from '../../store/totalSearchPageSlice'
-import { getSearchPage } from '../../store/searchPageSlice';
+import { getSearchResult, clearResult } from '../store/searchSlice'
+import { getTotalSearchPage } from '../store/totalSearchPageSlice'
+import { getSearchPage } from '../store/searchPageSlice';
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useState } from 'react';
 import { SearchOutlined } from '@ant-design/icons';
-import useWindowSize from '../../hook/useWindowSize'
+import useWindowSize from '../hook/useWindowSize'
 
 export default function InputSearch () {
   const windowWidth = useWindowSize().width
@@ -28,8 +28,8 @@ export default function InputSearch () {
     setIsModalOpen(false);
   };
   const onSearch = (value) => {
-    //判斷是否更改搜尋文字
-    if(inputText !== value) dispatch(getSearchPage(1))
+    //判斷是否更改搜尋文字 是的話回到第一頁
+    if(inputText !== value ) dispatch(getSearchPage(1))
     axios
       .get(`https://api.themoviedb.org/3/search/movie?api_key=06b5ea731fca9e39d8b51074aaad5aac&language=en-US&query=${value}&page=${inputText !== value ? 1 : page}&include_adult=false`)
       .then(response => {
@@ -43,7 +43,9 @@ export default function InputSearch () {
           
           navigate('/search')
         } else {
-          dispatch(getSearchResult(response.data.results))
+          console.log('清空');
+          dispatch(clearResult([]))
+          // dispatch(getSearchResult([]))
           dispatch(getTotalSearchPage(1))
         }
         

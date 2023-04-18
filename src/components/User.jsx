@@ -2,8 +2,8 @@ import { FontSizeOutlined, LogoutOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { Avatar } from "antd";
-import { logOut } from '../../store/loginSlice';
-import { clearSession } from '../../store/getSessionSlice';
+import { logOut } from '../store/loginSlice';
+import { clearSession } from '../store/getSessionSlice';
 
 export default function User (props) {
   const isLogIn = useSelector(state => state.login.value);
