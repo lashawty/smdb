@@ -6,6 +6,11 @@
 
 > 因使用 CORS Anywhere 進行 API 請求，若過多的請求會被限制，導致請求失敗或延遲。
 
+> 若無資料請點此[連結](https://cors-anywhere.herokuapp.com/corsdemo)，並點擊"Request temporary access to the demo server" 後，會出現"You currently have temporary access to the demo server." 即可重新整理頁面
+> 
+![](https://i.imgur.com/1Gs14S9.png)
+
+ 
 ### 實作功能
 
 1. 固定資料呈現
