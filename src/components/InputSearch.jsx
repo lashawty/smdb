@@ -60,8 +60,8 @@ export default function InputSearch () {
 
   //搜尋方法
   const onSearch = (value) => {
-    //關閉RWD燈箱
-    if (windowWidth <= 992) handleOk();
+    //搜尋完 如果是手機板 要關閉RWD燈箱
+    if (windowWidth <= 992) closeModal();
     switch (true) {
       //是否更改文字且更改的文字不為空值(按下X)
       case value !== inputText && value !== "":
