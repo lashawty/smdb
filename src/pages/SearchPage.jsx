@@ -54,6 +54,10 @@ export default function SearchPage(props) {
   const onChangePage = (page) => {
     setCurrentPage(page);
     dispatch(getSearchPage(page));
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
   };
 
   const showModal = () => {
