@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Card, Space, Rate, Image  } from 'antd';
 import { useSelector } from 'react-redux'
 import MarkFavButton from '../components/MarkFavButton';
+import Top from '../components/Top';
 import './page.sass'
 const { Meta } = Card;
 
@@ -35,6 +36,7 @@ export default function TopRatedPage (props) {
           </Card>
         ))}
         </Space>
+        <Top></Top>
       </div>
   )
 }

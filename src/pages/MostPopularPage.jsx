@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux'
 import { Card, Space, Rate, Image  } from 'antd';
+import Top from '../components/Top';
 import MarkFavButton from '../components/MarkFavButton';
 import './page.sass'
 const { Meta } = Card;
@@ -35,6 +36,7 @@ export default function MostPopularPage (props) {
           </Card>
         ))}
         </Space>
+        <Top></Top>
       </div>
   )
 }
